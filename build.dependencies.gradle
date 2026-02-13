@@ -1,9 +1,25 @@
 repositories {
+
+    maven { url = "https://mymaven.bylazar.com/releases" }
+    // Pedropathing ^^
+
+    maven { url = "https://repo.dairy.foundation/releases" }
+    //Sloth ^^
+
     mavenCentral()
     google() // Needed for androidx
 }
 
+
 dependencies {
+
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
+
+    testCompileOnly("org.projectlombok:lombok:1.18.42")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
+    //lombok ^^
+
     implementation 'org.firstinspires.ftc:Inspection:11.1.0'
     implementation 'org.firstinspires.ftc:Blocks:11.1.0'
     implementation 'org.firstinspires.ftc:RobotCore:11.1.0'
@@ -13,5 +29,16 @@ dependencies {
     implementation 'org.firstinspires.ftc:FtcCommon:11.1.0'
     implementation 'org.firstinspires.ftc:Vision:11.1.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    implementation 'com.pedropathing:ftc:2.0.6'
+    implementation 'com.pedropathing:telemetry:1.0.0'
+    //Pedropathing ^^
+
+    implementation("dev.frozenmilk.sinister:Sloth:0.2.4")
+    // Sloth ^^
+
+    implementation("org.ejml:ejml-simple:0.44.0")
+    // ejml ^^
+
 }
 
