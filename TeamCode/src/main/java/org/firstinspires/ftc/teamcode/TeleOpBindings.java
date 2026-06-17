@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.bylazar.gamepad.Gamepad;
 import com.seattlesolvers.solverslib.command.button.Trigger;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
@@ -11,11 +10,16 @@ import org.firstinspires.ftc.teamcode.subsystems.drivetrain;
 
 public class TeleOpBindings {
     private GamepadEx driver1;
+
     private Mythos robot;
 
     public TeleOpBindings(GamepadEx driver1, Mythos robot) {
         this.driver1 = driver1;
         this.robot = robot;
+    }
+
+    public void controlMap() {
+        //button actions
     }
 
     public void configureDefaultCommands() {
@@ -30,7 +34,4 @@ public class TeleOpBindings {
 
     }
 
-    public void controlMap() {
-        //button actions
-    }
 }
