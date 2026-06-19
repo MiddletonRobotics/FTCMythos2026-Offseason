@@ -20,6 +20,9 @@ android {
     namespace = 'org.firstinspires.ftc.teamcode'
 
     packagingOptions {
+        jniLibs {
+            pickFirsts += ['**/*.so']
+        }
         jniLibs.useLegacyPackaging true
     }
 }
@@ -45,6 +48,8 @@ repositories {
 dependencies {
     implementation project(':FtcRobotController')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
+
+    implementation "dev.frozenmilk.sinister:Sloth:0.2.4"
 
     // SolversLib: Latest Stable Version
 
