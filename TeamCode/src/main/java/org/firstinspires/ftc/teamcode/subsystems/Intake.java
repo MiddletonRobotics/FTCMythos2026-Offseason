@@ -10,7 +10,7 @@ public class Intake extends SubsystemBase {
 
     public Intake(final HardwareMap hMap, final String name) {
         frontIntake = new Motor(hMap, "frontIntake", Motor.GoBILDA.RPM_312);
-        backIntake = new Motor(hMap, "backIntake", Motor.GoBILDA.RPM_312);
+        backIntake = new Motor(hMap, "backIntake", Motor.GoBILDA.RPM_435);
 
         frontIntake.setInverted(true);
         backIntake.setInverted(true);
@@ -29,15 +29,15 @@ public class Intake extends SubsystemBase {
 
     public void intake() {
         frontIntake.set(1);
-        backIntake.set(1);
+        backIntake.set(1.0);
     }
 
     public void outtake() {
         frontIntake.set(-1);
-        backIntake.set(-1);
+        backIntake.set(-1.0);
     }
 
-    public void stop() {
+    public void stopIntake() {
         frontIntake.set(0);
         backIntake.set(0);
     }

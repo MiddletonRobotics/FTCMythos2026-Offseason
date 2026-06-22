@@ -11,11 +11,19 @@ import org.firstinspires.ftc.teamcode.subsystems.Mythos;
 public class MainTeleOp extends CommandOpMode {
     @Override
     public void initialize() {
-        Mythos robot = new Mythos(hardwareMap);
+        Mythos robot = new Mythos(hardwareMap, telemetry);
 
         GamepadEx driver1 = new GamepadEx(gamepad1);
 
         TeleOpBindings bindings = new TeleOpBindings(driver1, robot);
-        bindings.setup();
+
+        bindings.controlMap();
+        bindings.configureDefaultCommands();
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        telemetry.update();
     }
 }
