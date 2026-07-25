@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static com.seattlesolvers.solverslib.gamepad.GamepadExExtKt.whenInactive;
+
 import com.seattlesolvers.solverslib.command.InstantCommand;
 import com.seattlesolvers.solverslib.command.StartEndCommand;
 import com.seattlesolvers.solverslib.command.button.Button;
@@ -15,10 +17,16 @@ public class TeleOpBindings {
     private final GamepadEx driver1;
     private final Mythos robot;
 
+    //Intake
     private final Trigger ballIntake;
     private final Trigger ballOuttake;
-    private final Button shooterSpin;
 
+    //Shooter
+    private final Button shooterSpin;
+    private final Button hoodSpin;
+    private final Button hoodSpin2;
+    private final Button blockerUp;
+    private final Button blockerDown;
 
     public TeleOpBindings(GamepadEx driver1, Mythos robot) {
         this.driver1 = driver1;
@@ -26,7 +34,12 @@ public class TeleOpBindings {
 
         ballIntake = new Trigger(() -> driver1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.5);
         ballOuttake = new Trigger(() -> driver1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.5);
-        shooterSpin = new GamepadButton(driver1, GamepadKeys.Button.Y);
+
+        shooterSpin = new GamepadButton(driver1, GamepadKeys.Button.RIGHT_STICK_BUTTON);
+        hoodSpin = new GamepadButton(driver1, GamepadKeys.Button.Y);
+        hoodSpin2 = new GamepadButton(driver1, GamepadKeys.Button.X);
+        blockerUp = new GamepadButton(driver1, GamepadKeys.Button.A);
+        blockerDown = new GamepadButton(driver1, GamepadKeys.Button.B);
     }
 
     public void controlMap() {
@@ -42,9 +55,13 @@ public class TeleOpBindings {
         //shoot me later I just like having the stuff in order
 
         //shooter
-        shooterSpin.whenPressed(
-                new StartEndCommand(robot.shooter::fullSpin, robot.shooter::stopShooter)
-        );
+        shooterSpin.whenActive(robot.shooter::fullSpin)
+                    .whenInactive(robot.shooter::stopShooter);
+        hoodSpin.whenActive(robot.shooter::rotateHood);
+        hoodSpin2.whenActive(robot.shooter::rotateHood2);
+        blockerUp.whenActive(robot.shooter::blockerUp);
+        blockerDown.whenActive(robot.shooter::blockerDown);
+
     }
 
     public void configureDefaultCommands() {
@@ -53,7 +70,7 @@ public class TeleOpBindings {
                 robot.drivetrain,
                 () -> -driver1.getLeftY(),
                 () -> -driver1.getRightX(),
-                () -> driver1.getLeftX()
+                () -> -driver1.getLeftX()
         ));
     }
 }

@@ -28,12 +28,12 @@ public class Intake extends SubsystemBase {
     }
 
     public void intake() {
-        frontIntake.set(1);
+        frontIntake.set(1.0);
         backIntake.set(1.0);
     }
 
     public void outtake() {
-        frontIntake.set(-1);
+        frontIntake.set(-1.0);
         backIntake.set(-1.0);
     }
 
